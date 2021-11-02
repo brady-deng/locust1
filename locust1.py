@@ -1,9 +1,11 @@
 import time
-from locust import HttpUser, task
+from locust import HttpUser, task, constant
 import os
 
 
 class QuickstartUser(HttpUser):
+
+    wait_time = constant(1);
 
     # @task
     # def hello_world(self):
@@ -14,14 +16,71 @@ class QuickstartUser(HttpUser):
 
 
 
+    # @task(1)
+    # def hello_world(self):
+    #     print("start to request", self, "time ", time.asctime(time.localtime(time.time())))
+    #     with self.client.get("/test/personTest?name=deng", catch_response=True) as rep:
+    #         if rep.status_code != 200 or rep.elapsed.seconds > 10:
+    #             rep.failure("fail")
+    #         else:
+    #             rep.success()
+
+    # @task(1)
+    # def hello_world(self):
+    #     with self.client.get("/test/map/deng", catch_response=True) as rep:
+    #         if rep.status_code != 200 or rep.elapsed.seconds > 10:
+    #             rep.failure("fail")
+    #         else:
+    #             rep.success()
+
+    # @task(1)
+    # def hello_world(self):
+    #     with self.client.put("/test/map/wang", catch_response=True) as rep:
+    #         if rep.status_code != 200 or rep.elapsed.seconds > 10:
+    #             rep.failure("fail")
+    #         else:
+    #             rep.success()
+
+    # @task(1)
+    # def hello_world(self):
+    #     with self.client.get("/test/success", catch_response=True) as rep:
+    #         if rep.status_code != 200 or rep.elapsed.seconds > 10:
+    #             rep.failure("fail")
+    #         else:
+    #             rep.success()
+
+    # @task(1)
+    # def hello_world(self):
+    #     with self.client.get("/test/redis/deng", catch_response=True) as rep:
+    #         if rep.status_code != 200 or rep.elapsed.seconds > 10:
+    #             rep.failure("fail")
+    #         else:
+    #             rep.success()
+
+    # @task(1)
+    # def hello_world(self):
+    #     with self.client.put("/test/redis/wang", catch_response=True) as rep:
+    #         if rep.status_code != 200 or rep.elapsed.seconds > 10:
+    #             rep.failure("fail")
+    #         else:
+    #             rep.success()
+
+    # @task(1)
+    # def hello_world(self):
+    #     with self.client.get("/test/1", catch_response=True) as rep:
+    #         if rep.status_code != 200 or rep.elapsed.seconds > 10:
+    #             rep.failure("fail")
+    #         else:
+    #             rep.success()
+
     @task(1)
     def hello_world(self):
-        print("start to request", self, "time ", time.asctime(time.localtime(time.time())))
-        with self.client.get("/test/personTest?name=deng", catch_response=True) as rep:
+        with self.client.put("/test/user/wang", catch_response=True) as rep:
             if rep.status_code != 200 or rep.elapsed.seconds > 10:
                 rep.failure("fail")
             else:
                 rep.success()
+
 
         # self.client.get("/world")
     #
@@ -36,4 +95,4 @@ class QuickstartUser(HttpUser):
 
 
 if __name__ == "__main__":
-    os.system("locust -f locust1.py --host=http://localhost:8082")
+    os.system("locust -f locust1.py --host=http://localhost:8080")
